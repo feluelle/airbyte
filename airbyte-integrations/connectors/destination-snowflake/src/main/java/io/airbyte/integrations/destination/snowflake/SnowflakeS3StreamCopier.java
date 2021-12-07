@@ -5,7 +5,6 @@
 package io.airbyte.integrations.destination.snowflake;
 
 import com.amazonaws.services.s3.AmazonS3;
-import io.airbyte.commons.string.Strings;
 import io.airbyte.db.jdbc.JdbcDatabase;
 import io.airbyte.integrations.destination.ExtendedNameTransformer;
 import io.airbyte.integrations.destination.jdbc.SqlOperations;
@@ -30,8 +29,7 @@ public class SnowflakeS3StreamCopier extends LegacyS3StreamCopier {
       final S3DestinationConfig s3Config,
       final ExtendedNameTransformer nameTransformer,
       final SqlOperations sqlOperations) {
-    super(stagingFolder, destSyncMode, schema, streamName, Strings.addRandomSuffix("", "", FILE_PREFIX_LENGTH) + "_" + streamName,
-        client, db, s3Config, nameTransformer, sqlOperations);
+    super(stagingFolder, destSyncMode, schema, streamName, client, db, s3Config, nameTransformer, sqlOperations);
   }
 
   @Override
