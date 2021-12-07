@@ -34,14 +34,9 @@ import org.apache.commons.csv.CSVPrinter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+public abstract class S3StreamCopier implements StreamCopier {
 
-/**
- * @deprecated See {@link S3StreamCopier}
- */
-@Deprecated
-public abstract class LegacyS3StreamCopier implements StreamCopier {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(LegacyS3StreamCopier.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(S3StreamCopier.class);
 
   private static final int DEFAULT_UPLOAD_THREADS = 10; // The S3 cli uses 10 threads by default.
   private static final int DEFAULT_QUEUE_CAPACITY = DEFAULT_UPLOAD_THREADS;
@@ -70,7 +65,7 @@ public abstract class LegacyS3StreamCopier implements StreamCopier {
   protected final String stagingFolder;
   private final StagingFilenameGenerator filenameGenerator;
 
-  public LegacyS3StreamCopier(final String stagingFolder,
+  public S3StreamCopier(final String stagingFolder,
       final DestinationSyncMode destSyncMode,
       final String schema,
       final String streamName,
