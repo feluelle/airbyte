@@ -135,4 +135,17 @@ public class S3DestinationConfig {
         .withCredentials(new AWSStaticCredentialsProvider(awsCreds))
         .build();
   }
+
+  public S3DestinationConfig cloneWithFormatConfig(final S3FormatConfig formatConfig) {
+    return new S3DestinationConfig(
+        this.endpoint,
+        this.bucketName,
+        this.bucketPath,
+        this.bucketRegion,
+        this.accessKeyId,
+        this.secretAccessKey,
+        this.partSize,
+        formatConfig
+    );
+  }
 }
